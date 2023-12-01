@@ -135,7 +135,20 @@ class BatallaNaval
 
     static void AbrirCanalYT()
     {
-        Process.Start("https://www.youtube.com/andreu1k");
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = "cmd",
+            WindowStyle = ProcessWindowStyle.Hidden,
+            RedirectStandardInput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        Process proc = Process.Start(psi);
+        if (proc != null)
+        {
+            proc.StandardInput.WriteLine("start https://www.youtube.com/channel/UC1-tOvP6-SGgyxJwD9nZiPQ");
+        }
     }
 
     static void Main()

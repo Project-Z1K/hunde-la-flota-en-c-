@@ -1,11 +1,11 @@
-﻿using System;
+using System;
 
 class BatallaNaval
 {
-    const int TAMANIO_TABLERO = 8;
+    const int TAMANIO_TABLERO = 10;
     static char[,] tablero = new char[TAMANIO_TABLERO, TAMANIO_TABLERO];
-    static int barcosRestantes = 10;
-    static int disparosRestantes = 30;
+    static int barcosRestantes = 20;
+    static int disparosRestantes = 50;
 
     static void InicializarTablero()
     {
@@ -85,7 +85,7 @@ class BatallaNaval
                 tablero[fila, columna] = 'O';
                 Console.WriteLine("Agua... ¡Intenta con otro disparo!");
             }
-            else
+            else if (tablero[fila, columna] == 'H' || tablero[fila, columna] == 'O')
             {
                 Console.WriteLine("Ya has disparado en esta posición. Inténtalo de nuevo.");
                 continue;
@@ -108,24 +108,64 @@ class BatallaNaval
         }
     }
 
+    static void MostrarCreditos()
+    {
+        Console.WriteLine("***** CREDITOS *****");
+        Console.WriteLine("Desarrollado por:");
+        Console.WriteLine("Andreu1k");
+        Console.WriteLine("andreu1k on yt");
+        Console.WriteLine("*********************");
+    }
+
     static void Main()
     {
         while (true)
         {
             Console.WriteLine("*** BATALLA NAVAL ***");
             Console.WriteLine("1. Jugar");
-            Console.WriteLine("2. Salir");
+            Console.WriteLine("2. Dificultad");
+            Console.WriteLine("3. Créditos");
+            Console.WriteLine("4. Salir");
             Console.Write("Elige una opción: ");
             int opcion = int.Parse(Console.ReadLine());
 
             switch (opcion)
             {
                 case 1:
-                    barcosRestantes = 10;
-                    disparosRestantes = 30;
+                    barcosRestantes = 20;
+                    disparosRestantes = 50;
                     JugarBatallaNaval();
                     break;
                 case 2:
+                    Console.WriteLine("Niveles de dificultad:");
+                    Console.WriteLine("1. Fácil");
+                    Console.WriteLine("2. Medio");
+                    Console.WriteLine("3. Difícil");
+                    Console.Write("Elige un nivel de dificultad: ");
+                    int nivel = int.Parse(Console.ReadLine());
+                    switch (nivel)
+                    {
+                        case 1:
+                            barcosRestantes = 15;
+                            disparosRestantes = 40;
+                            break;
+                        case 2:
+                            barcosRestantes = 20;
+                            disparosRestantes = 50;
+                            break;
+                        case 3:
+                            barcosRestantes = 25;
+                            disparosRestantes = 60;
+                            break;
+                        default:
+                            Console.WriteLine("Opción inválida. Seleccionando nivel medio por defecto.");
+                            break;
+                    }
+                    break;
+                case 3:
+                    MostrarCreditos();
+                    break;
+                case 4:
                     Environment.Exit(0);
                     break;
                 default:

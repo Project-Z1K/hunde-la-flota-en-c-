@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 class BatallaNaval
 {
@@ -23,15 +24,30 @@ class BatallaNaval
         Console.Write("  ");
         for (int i = 0; i < TAMANIO_TABLERO; ++i)
         {
-            Console.Write(i + " ");
+            Console.Write($"\x1b[33m{i}\x1b[0m ");
         }
         Console.WriteLine();
         for (int i = 0; i < TAMANIO_TABLERO; ++i)
         {
-            Console.Write(i + " ");
+            Console.Write($"\x1b[33m{i}\x1b[0m ");
             for (int j = 0; j < TAMANIO_TABLERO; ++j)
             {
-                Console.Write(tablero[i, j] + " ");
+                if (tablero[i, j] == 'X')
+                {
+                    Console.Write("\x1b[36mX\x1b[0m ");
+                }
+                else if (tablero[i, j] == 'H')
+                {
+                    Console.Write("\x1b[31mH\x1b[0m ");
+                }
+                else if (tablero[i, j] == 'O')
+                {
+                    Console.Write("\x1b[34mO\x1b[0m ");
+                }
+                else
+                {
+                    Console.Write("- ");
+                }
             }
             Console.WriteLine();
         }
@@ -117,6 +133,11 @@ class BatallaNaval
         Console.WriteLine("*********************");
     }
 
+    static void AbrirCanalYT()
+    {
+        Process.Start("https://www.youtube.com/andreu1k");
+    }
+
     static void Main()
     {
         while (true)
@@ -125,7 +146,8 @@ class BatallaNaval
             Console.WriteLine("1. Jugar");
             Console.WriteLine("2. Dificultad");
             Console.WriteLine("3. Créditos");
-            Console.WriteLine("4. Salir");
+            Console.WriteLine("4. Abrir Canal de YouTube");
+            Console.WriteLine("5. Salir");
             Console.Write("Elige una opción: ");
             int opcion = int.Parse(Console.ReadLine());
 
@@ -166,6 +188,9 @@ class BatallaNaval
                     MostrarCreditos();
                     break;
                 case 4:
+                    AbrirCanalYT();
+                    break;
+                case 5:
                     Environment.Exit(0);
                     break;
                 default:

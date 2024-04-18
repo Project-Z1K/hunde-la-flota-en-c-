@@ -10,9 +10,6 @@ class Battleship
     static char[,] board = new char[BOARD_SIZE, BOARD_SIZE];
     static int shipsRemaining = MAX_SHIPS;
     static int shotsRemaining = MAX_SHOTS;
-    static ConsoleKeyInfo keyForRow = new ConsoleKeyInfo('W', ConsoleKey.W, false, false, false);
-    static ConsoleKeyInfo keyForColumn = new ConsoleKeyInfo('A', ConsoleKey.A, false, false, false);
-    static ConsoleKeyInfo keyForShoot = new ConsoleKeyInfo('S', ConsoleKey.S, false, false, false);
 
     static Random rnd = new Random();
 
@@ -25,7 +22,6 @@ class Battleship
             Console.WriteLine("2. Difficulty");
             Console.WriteLine("3. Credits");
             Console.WriteLine("4. Open YouTube Channel");
-            Console.WriteLine("5. Customize Keys");
             Console.WriteLine("6. Exit");
             Console.Write("Choose an option: ");
             int option;
@@ -50,9 +46,6 @@ class Battleship
                     break;
                 case 4:
                     OpenYouTubeChannel();
-                    break;
-                case 5:
-                    CustomizeKeys();
                     break;
                 case 6:
                     Environment.Exit(0);
@@ -174,18 +167,6 @@ class Battleship
         {
             proc.StandardInput.WriteLine("start https://www.youtube.com/channel/UC1-tOvP6-SGgyxJwD9nZiPQ");
         }
-    }
-
-    static void CustomizeKeys()
-    {
-        Console.WriteLine("Customize Keys:");
-        Console.WriteLine("Enter the key for row selection:");
-        keyForRow = Console.ReadKey();
-        Console.WriteLine("\nEnter the key for column selection:");
-        keyForColumn = Console.ReadKey();
-        Console.WriteLine("\nEnter the key for shooting:");
-        keyForShoot = Console.ReadKey();
-        Console.WriteLine("\nKeys customized successfully!");
     }
 
     static void InitializeBoard()

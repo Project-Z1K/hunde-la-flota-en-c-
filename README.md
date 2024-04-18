@@ -9,3 +9,4 @@
 - server slide
 - online (soon)
 - options
+- custome keys

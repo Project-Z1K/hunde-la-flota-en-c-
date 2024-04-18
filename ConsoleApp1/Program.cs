@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 class Battleship
 {
@@ -132,9 +133,22 @@ class Battleship
         Console.WriteLine("*********************");
     }
 
-    static void OpenYouTubeChannel()
+    static void AbrirCanalYT()
     {
-        System.Diagnostics.Process.Start("https://www.youtube.com/channel/UC1-tOvP6-SGgyxJwD9nZiPQ");
+        ProcessStartInfo psi = new ProcessStartInfo
+        {
+            FileName = "cmd",
+            WindowStyle = ProcessWindowStyle.Hidden,
+            RedirectStandardInput = true,
+            UseShellExecute = false,
+            CreateNoWindow = true
+        };
+
+        Process proc = Process.Start(psi);
+        if (proc != null)
+        {
+            proc.StandardInput.WriteLine("start https://www.youtube.com/channel/UC1-tOvP6-SGgyxJwD9nZiPQ");
+        }
     }
 
     static void Main()
@@ -187,7 +201,7 @@ class Battleship
                     ShowCredits();
                     break;
                 case 4:
-                    OpenYouTubeChannel();
+                    AbrirCanalYT();
                     break;
                 case 5:
                     Environment.Exit(0);
